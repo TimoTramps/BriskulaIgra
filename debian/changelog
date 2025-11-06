@@ -1,0 +1,55 @@
+cbriscola (0.3-1) stable; urgency=medium
+
+  * Now the default translation is taked from system instead of being passed as parameter
+
+ -- Giulio Sorrentino <gsorre84@gmail.com>  Wed, 14 Sep 2023 03:57:52
+
+cbriscola (0.2.5-2) stable; urgency=medium
+
+  * Added the manpage
+
+ -- Giulio Sorrentino <gsorre84@gmail.com>  Tue, 24 May 2022 22:38:15
+ 
+cbriscola (0.2.5-1) stable; urgency=medium
+
+  * Removed the visualization of the deck and of the trump card when the deck ends
+
+ -- Giulio Sorrentino <gsorre84@gmail.com>  Tue, 24 May 2022 21:31:33 +0200
+
+cbriscola (0.2.4-1) stable; urgency=medium
+
+  * Added the credits
+
+ -- Giulio Sorrentino <gsorre84@gmail.com>  Tue, 24 May 2022 15:36:24 +0200
+
+cbriscola (0.2.3-1) unstable; urgency=medium
+
+  * Solved bug that doesn't permit to the IA to operate getting the most valuable card when gaming as second
+
+ -- Giulio Sorrentino <gsorre84@gmail.com>  Tue, 24 May 2022 15:36:24 +0200
+
+cbriscola (0.2.2-1) unstable; urgency=medium
+
+  * Solved bug that doesn't permit to the IA to operate non-conditional choices
+
+ -- Giulio Sorrentino <gsorre84@gmail.com>  Tue, 24 May 2022 15:03:33 +0200
+
+cbriscola (0.2.1-1) unstable; urgency=medium
+
+  * Added goodbye message that says if one loose or win
+  * Solved bug that doesn't permit to ordinate cards when a new card has been taken from deck
+
+ -- Giulio Sorrentino <gsorre84@gmail.com>  Tue, 24 May 2022 12:54:30 +0200
+
+cbriscola (0.2-1) unstable; urgency=medium
+
+  * Added suppport for internationalization from command line
+  * Solved bug that doesn't permit to play latest card
+
+ -- Giulio Sorrentino <gsorre84@gmail.com>  Tue, 24 May 2022 12:54:30 +0200
+
+cbriscola (0.1.3-1) unstable; urgency=medium
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Giulio Sorrentino <gsorre84@gmail.com>  Tue, 24 May 2022 07:32:07 +0200

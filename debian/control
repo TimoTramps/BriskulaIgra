@@ -1,0 +1,16 @@
+Source: cbriscola
+Section: unknown
+Priority: optional
+Maintainer: Giulio Sorrentino <gsorre84@gmail.com>
+Build-Depends: debhelper-compat (= 13), dotnet-sdk-7.0
+Standards-Version: 4.5.1
+Homepage: http://github.com/numerunix/cbriscola/releases
+#Vcs-Browser: https://salsa.debian.org/debian/cbriscola
+#Vcs-Git: https://salsa.debian.org/debian/cbriscola.git
+Rules-Requires-Root: no
+
+Package: cbriscola
+Architecture: all
+Depends: dotnet-runtime-7.0
+Description: Gioco della briscola a 2 giocatori
+  Gioco della briscola a 2 giocatori in c# con interfaccia testuale.

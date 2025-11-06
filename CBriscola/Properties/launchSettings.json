@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CBriscola": {
+      "commandName": "Project",
+      "commandLineArgs": "numerone francesca"
+    }
+  }
+}
