@@ -14,12 +14,12 @@ namespace CBriscola {
 	{
 		private static giocatore g;
 		private static giocatore cpu;
-		private static giocatore primo;
-		private static giocatore secondo;
+		private static giocatore first;
+		private static giocatore second;
 		private static mazzo m;
 		public static System.Resources.ResourceManager mgr;
-		private static UInt128 partite = 0;
-		private static UInt16 puntiUtente = 0, puntiCpu = 0;
+		private static UInt128 rounds = 0;
+		private static UInt16 points = 0, pointsCpu = 0;
 		private static int result;
 		private static string s;
 		public static void Main()
@@ -30,8 +30,8 @@ namespace CBriscola {
 			carta.inizializza(40, cartaHelperBriscola.getIstanza(e));
 			g = new giocatore(new giocatoreHelperUtente(), "", 3);
 			cpu = new giocatore(new giocatoreHelperCpu(elaboratoreCarteBriscola.getCartaBriscola()), "", 3);
-			primo = g;
-			secondo = cpu;
+			first = g;
+			second = cpu;
 			giocatore temp = g;
 			carta c;
 			carta c1;
@@ -49,29 +49,29 @@ namespace CBriscola {
 					System.Console.WriteLine($"{mgr.GetString("CartaBriscola")}: {briscola}");
 					System.Console.WriteLine($"{mgr.GetString("CarteMazzo")}: {m.getNumeroCarte()} {mgr.GetString("carte")}.");
 				}
-				System.Console.WriteLine($"{mgr.GetString("PuntiCpu")}: {cpu.getPunteggio()}"); ;
-				System.Console.WriteLine($"{mgr.GetString("PuntiUtente")}: {g.getPunteggio()}");
+				System.Console.WriteLine($"{mgr.GetString("pointsCpu")}: {cpu.getPunteggio()}"); ;
+				System.Console.WriteLine($"{mgr.GetString("points")}: {g.getPunteggio()}");
 				gioca();
-				c = primo.getCartaGiocata();
-				c1 = secondo.getCartaGiocata();
+				c = first.getCartaGiocata();
+				c1 = second.getCartaGiocata();
 				System.Console.WriteLine($" {c} {c1}");
 
 				if ((c.CompareTo(c1) > 0 && c.stessoSeme(c1)) || (c1.stessoSeme(briscola) && !c.stessoSeme(briscola)))
 				{
-					temp = secondo;
-					secondo = primo;
-					primo = temp;
+					temp = second;
+					second = first;
+					first = temp;
 				}
-				primo.aggiornaPunteggio(secondo);
+				first.aggiornaPunteggio(second);
 				if (!aggiungiCarte())
 				{
-					if (partite == UInt128.MaxValue)
+					if (rounds == UInt128.MaxValue)
 					{
 						System.Console.WriteLine($"{mgr.GetString("GiocareTroppo")}");
 						break;
 					}
-					partite++;
-					if (partite % 2 == 1)
+					rounds++;
+					if (rounds % 2 == 1)
 						System.Console.Write($"{mgr.GetString("SecondaPartita")}");
 					else
 						System.Console.Write($"{mgr.GetString("NuovaPartita")}");
@@ -93,14 +93,14 @@ namespace CBriscola {
                         carta.inizializza(40, cartaHelperBriscola.getIstanza(e));
                         g = new giocatore(new giocatoreHelperUtente(), "", 3);
                         cpu = new giocatore(new giocatoreHelperCpu(elaboratoreCarteBriscola.getCartaBriscola()), "", 3);
-						if (partite % 2 == 1)
+						if (rounds % 2 == 1)
 						{
-							primo = cpu;
-							secondo = g;
+							first = cpu;
+							second = g;
 						} else
 						{
-							primo = g;
-							secondo = cpu;
+							first = g;
+							second = cpu;
 						}
                         briscola = carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola());
                         for (UInt16 i = 0; i < 3; i++)
@@ -117,10 +117,10 @@ namespace CBriscola {
 		{
 			try
 			{
-				primo.gioca();
-				if (primo == cpu)
-					System.Console.WriteLine($"{mgr.GetString("Giocata")} {primo.getCartaGiocata()}");
-				secondo.gioca(primo);
+				first.gioca();
+				if (first == cpu)
+					System.Console.WriteLine($"{mgr.GetString("Giocata")} {first.getCartaGiocata()}");
+				second.gioca(first);
 			}
 			catch (System.ArgumentNullException e)
 			{
@@ -132,23 +132,23 @@ namespace CBriscola {
 		{
 			try
 			{
-				primo.addCarta(m);
-				secondo.addCarta(m);
+				first.addCarta(m);
+				second.addCarta(m);
 			}
 			catch (IndexOutOfRangeException e)
 			{
-				puntiUtente += g.getPunteggio();
-				puntiCpu += cpu.getPunteggio();
+				points += g.getPunteggio();
+				pointsCpu += cpu.getPunteggio();
 				System.Console.WriteLine($"{mgr.GetString("PartitaFinita")}.");
-				System.Console.WriteLine($"{mgr.GetString("PuntiUtente")}: {puntiUtente}");
-				System.Console.WriteLine($"{mgr.GetString("PuntiCpu")}: {puntiCpu}");
-				if (puntiUtente == puntiCpu)
+				System.Console.WriteLine($"{mgr.GetString("points")}: {points}");
+				System.Console.WriteLine($"{mgr.GetString("pointsCpu")}: {pointsCpu}");
+				if (points == pointsCpu)
 					Console.WriteLine($"{mgr.GetString("PartitaPatta")}.");
 				else
-					if (puntiUtente > puntiCpu)
-						Console.WriteLine($"{mgr.GetString("HaiVintoPer")} {puntiUtente - puntiCpu} {mgr.GetString("punti")}.");
+					if (points > pointsCpu)
+						Console.WriteLine($"{mgr.GetString("HaiVintoPer")} {points - pointsCpu} {mgr.GetString("punti")}.");
 					else
-						Console.WriteLine($"{mgr.GetString("HaiPersoPer")} {puntiCpu - puntiUtente} {mgr.GetString("punti")}.");
+						Console.WriteLine($"{mgr.GetString("HaiPersoPer")} {pointsCpu - points} {mgr.GetString("punti")}.");
 
 				return false;
 			}
@@ -169,3 +169,4 @@ namespace CBriscola {
 		}
 	}
 }
+
